@@ -48,9 +48,9 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ orderItems, onRemoveItem, o
 
       <button
         onClick={onSubmit}
-        className={`mt-4 w-full bg-red-400 px-4 py-2 rounded-lg text-white ${orderItems.length === 0 ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-500'
+        className={`mt-4 w-full  px-4 py-2 rounded-lg text-white ${orderItems.length === 0 ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-500'
           }`}
-        disabled={orderItems.length === 0} // Disable button if no items in order
+        disabled={orderItems.length == 0}
       >
         Submit Order
       </button>
