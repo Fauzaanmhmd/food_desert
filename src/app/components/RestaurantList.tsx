@@ -1,5 +1,4 @@
 import { MenuItem } from "../data/types";
-
 interface RestaurantListProps {
     items: MenuItem[];
     onAddToOrder: (item: MenuItem) => void;

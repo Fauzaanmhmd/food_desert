@@ -64,7 +64,6 @@ export default function Home() {
     <div className="flex min-h-screen">
         <Sidebar />    
       <div className="flex flex-col flex-grow p-4 bg-gray-100 md:flex-row md:justify-between">
-        {/* Bagian kiri untuk konten utama */}
         <div className="flex-grow">
           <Header onSearch={handleSearch} />
           <CategoryFilter
