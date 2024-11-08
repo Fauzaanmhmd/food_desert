@@ -1,3 +1,5 @@
+import { IconType } from 'react-icons';
+
 export interface MenuItem {
     id: number;
     name: string;
@@ -5,7 +7,6 @@ export interface MenuItem {
     image: string;
     description: string;
     price: number;
-    icon?: React.ReactNode;
   }
   
   export interface OrderItem extends MenuItem {

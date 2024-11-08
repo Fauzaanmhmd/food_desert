@@ -1,12 +1,11 @@
-// components/Sidebar.tsx
 import React from 'react';
 import { FaHome, FaPizzaSlice, FaCalendarAlt, FaHeart, FaList } from 'react-icons/fa';
 
 
 const Sidebar: React.FC = () => {
   return (
-    <div className="w-20 bg-red-400 text-white min-h-screen flex flex-col items-center py-4">
-      <div className="mb-8">
+    <div className="w-20 bg-red-400 text-white min-h-screen flex flex-col items-center py-8 ">
+      <div className="mb-8 sm:w-1/2">
         <FaHome size={24} className="mb-4 cursor-pointer" />
         <FaPizzaSlice size={24} className="mb-4 cursor-pointer" />
         <FaCalendarAlt size={24} className="mb-4 cursor-pointer" />

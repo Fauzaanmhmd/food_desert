@@ -13,10 +13,10 @@ export default function Home() {
   const [orderItems, setOrderItems] = useState<OrderItem[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [isOrderSubmitted, setIsOrderSubmitted] = useState<boolean>(false); // Modal state
+  const [isOrderSubmitted, setIsOrderSubmitted] = useState<boolean>(false);
 
   const categories = Array.from(new Set(menuItems.map((item) => item.category)));
-  
+
   const handleAddToOrder = (item: MenuItem) => {
     setOrderItems((prevOrder) => {
       const existingItem = prevOrder.find((orderItem) => orderItem.id === item.id);
@@ -62,18 +62,38 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen">
-      <Sidebar />
-      <div className="flex-grow p-4 bg-gray-100">
-        <Header onSearch={handleSearch} />
-        <CategoryFilter
-          categories={categories}
-          selectedCategory={selectedCategory}
-          onSelectCategory={handleCategorySelect}
-        />
-        <RestaurantList items={filteredItems} onAddToOrder={handleAddToOrder} />
-      </div>
-      <div className="w-1/4 p-4">
-        <OrderSummary username="Fauzan Muhammad" location="6313 Elgin, Australia" orderItems={orderItems} onRemoveItem={handleRemoveFromOrder} onSubmit={handleSubmitOrder} />
+        <Sidebar />    
+      <div className="flex flex-col flex-grow p-4 bg-gray-100 md:flex-row md:justify-between">
+        {/* Bagian kiri untuk konten utama */}
+        <div className="flex-grow">
+          <Header onSearch={handleSearch} />
+          <CategoryFilter
+            categories={categories}
+            selectedCategory={selectedCategory}
+            onSelectCategory={handleCategorySelect}
+          />
+          <RestaurantList items={filteredItems} onAddToOrder={handleAddToOrder} />
+          
+          <div className="mt-4 md:hidden">
+            <OrderSummary 
+              username="Fauzan Muhammad" 
+              location="6313 Elgin, Australia" 
+              orderItems={orderItems} 
+              onRemoveItem={handleRemoveFromOrder} 
+              onSubmit={handleSubmitOrder} 
+            />
+          </div>
+        </div>
+        
+        <div className="hidden w-1/4 p-4 md:block">
+          <OrderSummary 
+            username="Fauzan Muhammad" 
+            location="6313 Elgin, Australia" 
+            orderItems={orderItems} 
+            onRemoveItem={handleRemoveFromOrder} 
+            onSubmit={handleSubmitOrder} 
+          />
+        </div>
       </div>
 
       {isOrderSubmitted && (

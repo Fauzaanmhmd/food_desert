@@ -13,7 +13,7 @@ const menuItems: MenuItem[] = [
   {
     id: 2,
     name: "Burger",
-    category: "Fast Food",
+    category: "FastFood",
     image: "https://www.foodandwine.com/thmb/DI29Houjc_ccAtFKly0BbVsusHc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/crispy-comte-cheesburgers-FT-RECIPE0921-6166c6552b7148e8a8561f7765ddf20b.jpg",
     description: "Juicy beef burger.",
     price: 5,
@@ -37,7 +37,7 @@ const menuItems: MenuItem[] = [
   {
     id: 5,
     name: "Lasagna",
-    category: "Fast Food",
+    category: "FastFood",
     image: "https://thumbs.dreamstime.com/b/tomato-ground-beef-lasagne-cheese-layered-sheets-traditional-italian-pasta-served-white-plate-dark-64979694.jpg",
     description: "Juicy beef burger.",
     price: 5,
@@ -61,7 +61,7 @@ const menuItems: MenuItem[] = [
   {
     id: 8,
     name: "Caesar Salad",
-    category: "Fast Food",
+    category: "FastFood",
     image: "https://media.istockphoto.com/id/534139231/photo/healthy-grilled-chicken-caesar-salad.jpg?s=612x612&w=0&k=20&c=TR_sE5S5ChmjFywg3dh_J5V_ha-BcwgTU26BvsgbsjY=",
     description: "Juicy beef burger.",
     price: 5,
