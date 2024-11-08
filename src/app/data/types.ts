@@ -1,5 +1,3 @@
-import { IconType } from 'react-icons';
-
 export interface MenuItem {
     id: number;
     name: string;
