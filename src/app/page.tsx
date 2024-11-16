@@ -14,8 +14,7 @@ export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [isOrderSubmitted, setIsOrderSubmitted] = useState<boolean>(false);
-
-  const categories = Array.from(new Set(menuItems.map((item) => item.category)));
+  const categories = [...new Set(menuItems.map(item => item.category))];
 
   const handleAddToOrder = (item: MenuItem) => {
     setOrderItems((prevOrder) => {
@@ -50,7 +49,6 @@ export default function Home() {
   };
 
   const closeModal = () => {
-    console.log("Closing modal...");
     setIsOrderSubmitted(false);
   };
 
@@ -72,19 +70,9 @@ export default function Home() {
             onSelectCategory={handleCategorySelect}
           />
           <RestaurantList items={filteredItems} onAddToOrder={handleAddToOrder} />
-          
-          <div className="mt-4 md:hidden">
-            <OrderSummary 
-              username="Fauzan Muhammad" 
-              location="6313 Elgin, Australia" 
-              orderItems={orderItems} 
-              onRemoveItem={handleRemoveFromOrder} 
-              onSubmit={handleSubmitOrder} 
-            />
-          </div>
         </div>
         
-        <div className="hidden w-1/4 p-4 md:block">
+        <div className="mt-4 md:mt-0 md:w-1/4 p-4 md:block flex-shrink-0">
           <OrderSummary 
             username="Fauzan Muhammad" 
             location="6313 Elgin, Australia" 
@@ -101,3 +89,4 @@ export default function Home() {
     </div>
   );
 }
+
