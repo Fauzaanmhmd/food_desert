@@ -8,12 +8,16 @@ import ConfirmationModal from "../app/components/ConfirmationModal";
 import { useState } from "react";
 import { MenuItem, OrderItem } from "../app/data/types";
 import menuItems from "../app/data/menuItems";
+import FoodDetailModal from "./components/FoodDetailModal";
 
 export default function Home() {
   const [orderItems, setOrderItems] = useState<OrderItem[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [isOrderSubmitted, setIsOrderSubmitted] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null); // State untuk item yang dipilih
+
   const categories = [...new Set(menuItems.map(item => item.category))];
 
   const handleAddToOrder = (item: MenuItem) => {
@@ -50,6 +54,8 @@ export default function Home() {
 
   const closeModal = () => {
     setIsOrderSubmitted(false);
+    setIsModalOpen(false);
+    setSelectedItem(null);
   };
 
   const filteredItems = menuItems.filter((item) => {
@@ -58,10 +64,15 @@ export default function Home() {
     return matchesCategory && matchesSearch;
   });
 
+  const openModal = (item: MenuItem) => {
+    setSelectedItem(item);
+    setIsModalOpen(true);
+  };
+
   return (
     <div className="flex min-h-screen">
-        <Sidebar />    
-      <div className="flex flex-col flex-grow p-4 bg-gray-100 md:flex-row md:justify-between">
+      <Sidebar />
+      <div className="flex-grow p-4 md:flex md:justify-between md:p-6">
         <div className="flex-grow">
           <Header onSearch={handleSearch} />
           <CategoryFilter
@@ -69,19 +80,25 @@ export default function Home() {
             selectedCategory={selectedCategory}
             onSelectCategory={handleCategorySelect}
           />
-          <RestaurantList items={filteredItems} onAddToOrder={handleAddToOrder} />
+          <RestaurantList items={filteredItems} onAddToOrder={handleAddToOrder} openModal={openModal} />
         </div>
-        
+
         <div className="mt-4 md:mt-0 md:w-1/4 p-4 md:block flex-shrink-0">
-          <OrderSummary 
-            username="Fauzan Muhammad" 
-            location="6313 Elgin, Australia" 
-            orderItems={orderItems} 
-            onRemoveItem={handleRemoveFromOrder} 
-            onSubmit={handleSubmitOrder} 
+          <OrderSummary
+            username="Fauzan Muhammad"
+            location="6313 Elgin, Australia"
+            orderItems={orderItems}
+            onRemoveItem={handleRemoveFromOrder}
+            onSubmit={handleSubmitOrder}
           />
         </div>
       </div>
+
+      <FoodDetailModal
+        isOpen={isModalOpen}
+        selectedItem={selectedItem}
+        onClose={closeModal}
+      />
 
       {isOrderSubmitted && (
         <ConfirmationModal onClose={closeModal} />
@@ -89,4 +106,5 @@ export default function Home() {
     </div>
   );
 }
+
 
